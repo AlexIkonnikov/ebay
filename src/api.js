@@ -1,19 +1,19 @@
 async function getQuestions() {
-    let response = await fetch('../api/questions.php', {
+    let questions = await fetch('../api/questions.php', {
         method: 'GET',
     });
-    if (response) {
-        let json = await response.json();
+    if (questions) {
+        let json = await questions.json();
         return json;
     }
 }
 
 async function getAnswers() {
-    let response = await fetch('../api/answers.php', {
+    let answers = await fetch('../api/answers.php', {
         method: 'GET',
     });
-    if (response) {
-        let json = await response.json();
+    if (answers) {
+        let json = await answers.json();
         return json;
     }
 }
