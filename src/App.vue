@@ -12,7 +12,7 @@ import FirstQuestion from './components/FirstQuestion';
 import SecondQuestion from './components/SecondQuestion';
 import LastQuestion from './components/LastQuestion';
 import AppResult from './components/AppResult';
-import { getQuestions, getAnswers } from './api.js';
+import { getData } from './api.js';
 export default {
   components: { 
     StartScreen,
@@ -23,10 +23,9 @@ export default {
   },
   name: 'App',
   mounted: async function () {
-    const questions = await getQuestions();
-    this.$store.dispatch('setQuestions', questions);
-    const answers = await getAnswers();
-    this.$store.dispatch('setAnswers', answers);
+    const data = await getData();
+    this.$store.dispatch('setQuestions', data.questions);
+    this.$store.dispatch('setAnswers', data.answers);
   },
   computed: {
     currentQuestion() {
