@@ -4,6 +4,7 @@
     <template v-if="!dataIsReady && !error.length">
       Loading..
     </template>
+
     <template v-else-if="error.length">
       Woops..
     </template>
@@ -11,7 +12,6 @@
     <template v-else>
       Начать тест
     </template>
-
   </button>
 </template>
 

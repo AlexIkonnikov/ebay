@@ -21,14 +21,14 @@ export default {
         this.$el.classList.add('animate__slideInRight');
     },
     methods: {
-        toAnswer(evt) {
+        toAnswer() {
             if (this.id === "restart") {
                 this.$store.commit('testRestart');
                 return;
             }
             const userAnswer = {
-                question_text: this.$store.getters.getQuestionText,
-                answer_text: evt.target.textContent,
+                question: this.$store.getters.getQuestionId,
+                answer: this.id,
             };
             this.$store.commit('addUserAnswer', userAnswer);
             this.$store.commit('nextPage');

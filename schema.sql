@@ -8,11 +8,18 @@ CREATE TABLE questions (
   text TEXT
 );
 
+CREATE TABLE answer_categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  category TEXT
+);
+
 CREATE TABLE answers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   id_question INT,
+  id_category INT,
   text TEXT,
-  FOREIGN KEY (id_question) REFERENCES questions (id)
+  FOREIGN KEY (id_question) REFERENCES questions (id),
+  FOREIGN KEY (id_category) REFERENCES answer_categories (id)
 );
 
 CREATE TABLE user_answers (
@@ -28,16 +35,21 @@ INSERT INTO questions (`text`) VALUES
 ('Вопрос категории про любовь и семья'),
 ('Вопрос категории про здоровье и внешность');
 
-INSERT INTO answers (`text`, `id_question`) VALUES 
-('Машина для хот-догов', 1),
-('Новые детали для тюнинга авто', 1),
-('Велосипеды всей семье', 1),
+INSERT INTO answer_categories (`category`) VALUES 
+('ДРУЖБА'),
+('РАБОТА'),
+('САМОРАЗВИТИЕ');
 
-('Сюрприз в коробке', 2),
-('Шуруповерт', 2),
-('Усатая кружка', 2),
-('Медведь', 2),
+INSERT INTO answers (`text`, `id_question`, `id_category`) VALUES 
+('Машина для хот-догов', 1, 1),
+('Новые детали для тюнинга авто', 1, 2),
+('Велосипеды всей семье', 1, 3),
 
-('Горшок с мазью', 3),
-('Платье', 3),
-('Смарт-часы', 3);
+('Сюрприз в коробке', 2, 1),
+('Шуруповерт', 2, 2),
+('Усатая кружка', 2, 3),
+('Медведь', 2, 1),
+
+('Горшок с мазью', 3, 2),
+('Платье', 3, 3),
+('Смарт-часы', 3, 1);

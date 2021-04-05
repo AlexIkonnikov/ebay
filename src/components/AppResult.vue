@@ -47,6 +47,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    p {
+        margin: 0;
+    }
     .result {
         min-height: 100vh;
         &__container {
