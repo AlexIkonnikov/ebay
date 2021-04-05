@@ -1,11 +1,12 @@
 async function getData() {
-    let questions = await fetch('../api/data.php', {
+    let data = await fetch('../api/data.php', {
         method: 'GET',
     });
-  
-    let json = await questions.json();
-    return json;
-    
+
+    if(data.ok) {
+        let json = await data.json();
+        return json;
+    }    
 }
 
 export { getData };

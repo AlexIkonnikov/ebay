@@ -24,6 +24,10 @@ export default {
   name: 'App',
   mounted: async function () {
     const data = await getData();
+    if(data.error) {
+      console.log(data.error);
+      return;
+    }
     this.$store.dispatch('setQuestions', data.questions);
     this.$store.dispatch('setAnswers', data.answers);
   },
