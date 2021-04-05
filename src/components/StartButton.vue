@@ -1,5 +1,18 @@
 <template>
-  <button class="btn-custom" @click="testStart">Начать тест</button>
+  <button class="btn-custom" @click="testStart" :disabled="error.length || !dataIsReady">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="!dataIsReady && !error.length"></span>
+    <template v-if="!dataIsReady && !error.length">
+      Loading..
+    </template>
+    <template v-else-if="error.length">
+      Woops..
+    </template>
+
+    <template v-else>
+      Начать тест
+    </template>
+
+  </button>
 </template>
 
 <script>
@@ -9,6 +22,14 @@ export default {
     testStart() {
       this.$store.commit('testStart');
       this.$store.commit('nextPage');
+    }
+  },
+  computed: {
+    error() {
+      return this.$store.getters.getErrors;
+    },
+    dataIsReady() {
+      return this.$store.getters.getDataStatus;
     }
   }
 }

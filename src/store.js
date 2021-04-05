@@ -6,6 +6,7 @@ const store = createStore({
         currentQuestion: 0,
         questions: [],
         answers: [],
+        errors: [],
         userAnswers: [],
     },
     mutations: {
@@ -27,6 +28,9 @@ const store = createStore({
         },
         setAnswers(state, payload) {
             state.answers = payload;
+        },
+        addError(state, payload) {
+            state.errors.push(payload);
         }
     },
     actions: {
@@ -51,9 +55,21 @@ const store = createStore({
                 return (it.id_question - 0)  === state.currentQuestion; 
             });
         },
+        getDataStatus(state) {
+            return state.questions.length && state.answers.length;
+        },
         getUserAnswers(state) {
             return state.userAnswers;
         },
+        getCurrentQuestion(state) {
+            return state.currentQuestion;
+        },
+        getTestStatus(state) {
+            return state.testIsNotBegin;
+        },
+        getErrors(state) {
+            return state.errors;
+        }
     }
 });
 

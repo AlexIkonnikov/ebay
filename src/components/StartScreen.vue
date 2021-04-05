@@ -1,28 +1,36 @@
 <template>
-  <div class="wrapper">
-    <div class="wrapper__column-1">
-        <section class="wrapper__header">
-            <h1>eBay исполняется 25<br> лет!Проверьте, а все<br> ли у вас сбалансировано<br> в жизни</h1>
-            <start-button />
-        </section>
-    </div> 
-    <div class="wrapper__column-2">
-        <div class="block block__top"><app-watch /></div>
-        <div class="block block__bottom"><app-joy-stick /></div>
+    <app-error v-if="error.length" :errors="error" />
+    <div class="wrapper">
+        <div class="wrapper__column-1">
+            <section class="wrapper__header">
+                <h1>eBay исполняется 25<br> лет!Проверьте, а все<br> ли у вас сбалансировано<br> в жизни</h1>
+                <start-button />
+            </section>
+        </div> 
+        <div class="wrapper__column-2">
+            <div class="block block__top"><app-watch /></div>
+            <div class="block block__bottom"><app-joy-stick /></div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 import StartButton from './StartButton';
+import AppError from './AppError';
 import AppWatch from './ikons/AppWatch';
 import AppJoyStick from './ikons/AppJoyStick';
 export default {
     name: 'start-screen',
+    computed: {
+        error() {
+            return this.$store.getters.getErrors;
+        }
+    },
     components: {
         StartButton,
+        AppError,
         AppWatch,
-        AppJoyStick
+        AppJoyStick,
     }
 }
 </script>

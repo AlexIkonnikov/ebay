@@ -12,7 +12,7 @@ import FirstQuestion from './components/FirstQuestion';
 import SecondQuestion from './components/SecondQuestion';
 import LastQuestion from './components/LastQuestion';
 import AppResult from './components/AppResult';
-import { getData } from './api.js';
+import { api } from './api.js';
 export default {
   components: { 
     StartScreen,
@@ -23,9 +23,9 @@ export default {
   },
   name: 'App',
   mounted: async function () {
-    const data = await getData();
+    const data = await api.getData();
     if(data.error) {
-      console.log(data.error);
+      this.$store.commit('addError', data.error)
       return;
     }
     this.$store.dispatch('setQuestions', data.questions);
@@ -33,10 +33,10 @@ export default {
   },
   computed: {
     currentQuestion() {
-      return this.$store.state.currentQuestion;
+      return this.$store.getters.getCurrentQuestion;
     },
     testIsNotBegin() {
-      return this.$store.state.testIsNotBegin;
+      return this.$store.getters.getTestStatus;
     }
   }
 }
