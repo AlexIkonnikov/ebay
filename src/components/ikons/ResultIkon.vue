@@ -9,34 +9,33 @@
         
         <path fill-rule="evenodd" clip-rule="evenodd" 
             :d="`
-            M${start_x} ${start_y}
-            V${start_y - test}
-            L${start_x - (test - 2.5)} ${start_y - (test/1.9)}
-            L${start_x} ${start_y} 
-            Z`" 
-            fill="#5F9AFF"
-        />
-
-        <!--<path fill-rule="evenodd" clip-rule="evenodd" 
-            :d="`
             M125.092 92.6251
-            V60.8179
-            L98.2568 77.212
+            v ${-friends}
+            l ${(-friends + friends/6)} ${(friends)/2}
             L125.092 92.6251
             Z`" 
             fill="#5F9AFF"
-        />-->
+        />
+        
+
+         <path fill-rule="evenodd" clip-rule="evenodd" 
+            :d="`M127.809 92.625
+            l ${(works - works/6)} ${(-works)/2}
+            l ${(-works + works/6)} ${(-works)/2}
+            L127.809 92.625
+            Z`" fill="#5F9AFF"
+         />
         
         <path fill-rule="evenodd" clip-rule="evenodd" 
-            d="
-            M127.809 92.625
-            L171.933 67.1541
-            L127.809 37.9509
-            L127.809 92.625
-            Z" 
-            fill="#5F9AFF"
+            :d="`
+            M129.266 94.9999
+            l${(development - development/10)} ${(development)/2}
+            v${(-development)}
+            L129.266 94.9999
+            Z`" 
+            fill="#5C97FF"
         />
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M129.266 94.9999L172.518 119.905V69.8188L129.266 94.9999Z" fill="#5C97FF"/>
+        
         <!--<path fill-rule="evenodd" clip-rule="evenodd" d="M128.063 97.405L156.246 113.676L128.063 129.084L128.063 97.405Z" fill="#5F9AFF"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M125.347 97.5471L96.293 114.157L125.347 137.468V97.5471Z" fill="#5F9AFF"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M123.978 95.0629L111.409 102.349L111.409 88.0393L123.978 95.0629Z" fill="#5F9AFF"/>
@@ -64,10 +63,16 @@ export default {
     },
     data() {
         return {
-            start_x: 125,
-            start_y: 92,
-            test: 80,
+            friends: 0,
+            works: 0,
+            development: 0,
         }
+    },
+    mounted() {
+        const scale = 25;
+        this.friends = scale * this.result.friends;
+        this.works = scale * this.result.works;
+        this.development = scale * this.result.development;
     }
 }
 </script>
@@ -78,7 +83,7 @@ export default {
         height: 190px;
     }
 
-    @media (min-width: 375px) {
+    @media (min-width: 500px) {
         svg {
             width: 410px;
             height: 316px;

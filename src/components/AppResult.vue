@@ -5,12 +5,11 @@
                 <h1 class="result__header">Результаты вашего теста:</h1>
                 <p class="result__text">Вы прошли тест и можете посмотреть на свои результаты</p>
                 <app-answer :answer="'Пройти ещё раз'" :widthBtn="185" :answer_id="'restart'" />
-                <app-answer :answer="'Устроить шопинг'" :widthBtn="185" />
+                <app-answer :answer="'Устроить шопинг'" :widthBtn="185"  disabled/>
                 <div class="result__wrapper">
                     <p class="result__text">Поделиться:</p>
                     <social-ikons/>
                 </div>
-                <button @click="result">результат</button>
             </div>
         </section>
         <div class="image">
@@ -28,15 +27,15 @@ export default {
     name: 'app-result',
     methods: {
         result() {
-            const result = this.$store.getters.getUserAnswers;
-            api.setUserAnswer(result);
+            const answers = this.$store.getters.getUserAnswers;
+            api.setUserAnswer(answers);
             const data = {
                 friends: 0,
                 works: 0,
                 development: 0
             }
-            result.forEach((it) => {
-                switch (it.category - 0) {
+            answers.forEach((answer) => {
+                switch (answer.category - 0) {
                     case 1: 
                         data.friends ++;
                         break;
@@ -66,6 +65,7 @@ export default {
     }
     .result {
         min-height: 100vh;
+        min-width: 100%;
         &__container {
             max-width: 290px;
             margin: 0 auto;
@@ -110,7 +110,7 @@ export default {
         padding: 14px 0px;
     }
 
-    @media (min-width: 500px) {
+    @media (min-width: 375px) {
         .result {
 
             &__section {
@@ -120,6 +120,7 @@ export default {
             &__header {
                 font-size: 32px;
                 line-height: 40px;
+                padding-top: 95px
             }
 
             &__wrapper {

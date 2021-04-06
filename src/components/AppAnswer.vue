@@ -19,7 +19,7 @@ export default {
         widthBtn: Number,
     },
     mounted() {
-        this.$el.classList.add('animate__slideInRight');
+        this.$el.classList.add('animate__slideInLeft');
     },
     methods: {
         toAnswer() {
@@ -42,6 +42,7 @@ export default {
 
 <style lang="scss" scoped>
     button {
+        box-sizing: border-box;
         display: block;
         padding: 13px 15px;
         margin-bottom: 10px;
