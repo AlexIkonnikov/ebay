@@ -4,7 +4,7 @@
             <div class="result__container">
                 <h1 class="result__header">Результаты вашего теста:</h1>
                 <p class="result__text">Вы прошли тест и можете посмотреть на свои результаты</p>
-                <app-answer :answer="'Пройти ещё раз'" :widthBtn="185" :id="'restart'" />
+                <app-answer :answer="'Пройти ещё раз'" :widthBtn="185" :answer_id="'restart'" />
                 <app-answer :answer="'Устроить шопинг'" :widthBtn="185" />
                 <div class="result__wrapper">
                     <p class="result__text">Поделиться:</p>
@@ -14,28 +14,42 @@
             </div>
         </section>
         <div class="image">
-            <result-ikon/>
+            <result-ikon :result="result()" />
         </div>
     </div>
 </template>
 
 <script>
+import { api } from '../api.js';
 import AppAnswer from './AppAnswer';
 import ResultIkon from './ikons/ResultIkon';
 import SocialIkons from './ikons/SocialIkons';
 export default {
     name: 'app-result',
-    data() {
-        return {
-            variants: [
-                {id: 1, text: 'Пройти ещё раз'},
-                {id: 2, text: 'Устроить шопинг'}
-            ]
-        }
-    },
     methods: {
         result() {
-            console.log(this.$store.getters.getUserAnswers);
+            const result = this.$store.getters.getUserAnswers;
+            api.setUserAnswer(result);
+            const data = {
+                friends: 0,
+                works: 0,
+                development: 0
+            }
+            result.forEach((it) => {
+                switch (it.category - 0) {
+                    case 1: 
+                        data.friends ++;
+                        break;
+                    case 2: 
+                        data.works ++;
+                        break;
+                    case 3: 
+                        data.development++;
+                        break;
+                }
+            });
+
+            return data;
         }
     },
     components: {

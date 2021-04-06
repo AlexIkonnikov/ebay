@@ -12,7 +12,8 @@
 export default {
     name: 'app-answer',
     props: {
-        id: String,
+        answer_id: String,
+        answer_category_id: String,
         answer: String,
         textColor: String,
         widthBtn: Number,
@@ -22,13 +23,14 @@ export default {
     },
     methods: {
         toAnswer() {
-            if (this.id === "restart") {
+            if (this.answer_id === "restart") {
                 this.$store.commit('testRestart');
                 return;
             }
             const userAnswer = {
-                question: this.$store.getters.getQuestionId,
-                answer: this.id,
+                question_id: this.$store.getters.getQuestionId,
+                answer_id: this.answer_id,
+                category: this.answer_category_id,
             };
             this.$store.commit('addUserAnswer', userAnswer);
             this.$store.commit('nextPage');

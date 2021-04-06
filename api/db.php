@@ -26,6 +26,19 @@ class DB {
         }
     }
 
+    public function setUserAnswers($data) {
+
+        foreach ($data as $array) {
+            $question_id = $array['question_id'];
+            $answer_id = $array['answer_id'];
+            $category = $array['category'];
+            $sql = "INSERT INTO user_answers (`question_id`, `answer_id`, `answer_category_id`)
+            VALUES ($question_id,  $answer_id, $category)";
+            mysqli_query($this->connection, $sql);
+        }
+
+    }
+
     public function getAllData($table) {
         $data = "SELECT * FROM $table";
         $result = mysqli_query($this->connection, $data);

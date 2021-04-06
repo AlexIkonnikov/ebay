@@ -3,7 +3,13 @@
         <section class="wrapper__header">
             <h1 :style="{color: headerColor ? headerColor : 'white'}" >{{ question }}</h1>
             <div class="wrapper__answer">
-                <app-answer v-for="answer in answers" :key="answer.id" :id="answer.id" :answer="answer.text" />
+                <app-answer 
+                    v-for="answer in answers" 
+                    :key="answer.id"
+                    :answer_id="answer.id" 
+                    :answer_category_id="answer.id_category" 
+                    :answer="answer.text" 
+                />
             </div>
         </section>
     </div>

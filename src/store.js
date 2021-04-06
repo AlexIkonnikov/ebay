@@ -21,6 +21,7 @@ const store = createStore({
         testRestart(state) {
             state.testIsNotBegin = true;
             state.currentQuestion = 0;
+            state.userAnswers = [];
         }, 
 
         addUserAnswer(state, payload) {

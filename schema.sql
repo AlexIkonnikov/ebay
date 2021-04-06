@@ -26,8 +26,10 @@ CREATE TABLE user_answers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   question_id INT,
   answer_id INT,
+  answer_category_id INT,
   FOREIGN KEY (question_id) REFERENCES questions (id),
-  FOREIGN KEY (answer_id) REFERENCES answers (id)
+  FOREIGN KEY (answer_id) REFERENCES answers (id),
+  FOREIGN KEY (answer_category_id) REFERENCES answer_categories (id)
 );
 
 INSERT INTO questions (`text`) VALUES 
