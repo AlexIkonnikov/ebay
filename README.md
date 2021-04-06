@@ -1,24 +1,9 @@
-# tester
+Инструкция по развертыванию.
 
-## Project setup
-```
-npm install
-```
+1) В корне проект выполнить команду npm install.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+2) Далее там же выполнить команду npm run build (появится папка dist).
 
-### Compiles and minifies for production
-```
-npm run build
-```
+3) Необходимо поднять локальный сервер, а так же добавить базу данных для данного приложения. Код, который создает нужную базу, со всеми тестовыми данными расположен в корне проекта, в файле schema.sql. Без базы фактически работать не будет(доступна только первая страница приложения).
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+4) Запустить на локальном сервере приложение, прописав путь до dist/index.html.
